@@ -4,7 +4,8 @@ from flask import Flask, jsonify, request
 from flask_cors import CORS
 
 app = Flask(__name__)
-CORS(app, origins=["https://itzjuliannn18-droid.github.io", "http://localhost:5173"])model = joblib.load("model.joblib")
+CORS(app, origins=["https://itzjuliannn18-droid.github.io", "http://localhost:5173"])
+model = joblib.load("model.joblib")
 
 TEXT_FIELDS = ["Gender", "Married", "Dependents", "Education",
                "Self_Employed", "Property_Area", "Credit_History"]
@@ -31,3 +32,4 @@ def predict():
 
 if __name__ == "__main__":
     app.run(port=5000, debug=True)
+
