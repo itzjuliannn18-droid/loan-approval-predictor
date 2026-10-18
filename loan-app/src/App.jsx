@@ -190,10 +190,6 @@ export default function App() {
               </ul>
             </>
           )}
-
-          <small className="muted note">
-            Educational project. This is not a real bank decision.
-          </small>
         </aside>
       </main>
     </div>
