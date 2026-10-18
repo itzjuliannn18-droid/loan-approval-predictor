@@ -1,0 +1,148 @@
+:root {
+  color-scheme: light dark;
+  --bg: #f1f5f9; --card: #ffffff; --text: #0f172a; --muted: #64748b;
+  --border: #cbd5e1; --track: #e2e8f0; --primary: #2563eb;
+  --ok: #22c55e; --no: #ef4444;
+  --ok-bg: #dcfce7; --ok-text: #166534; --no-bg: #fee2e2; --no-text: #991b1b;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0b1220; --card: #162033; --text: #e2e8f0; --muted: #94a3b8;
+    --border: #334155; --track: #334155;
+    --ok-bg: #14532d; --ok-text: #bbf7d0; --no-bg: #7f1d1d; --no-text: #fecaca;
+  }
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+.app { max-width: 1100px; margin: 0 auto; padding: 16px; }
+
+.hero {
+  text-align: center;
+  padding: 28px 16px;
+  border-radius: 20px;
+  color: #fff;
+  background: linear-gradient(135deg, #2563eb, #7c3aed);
+  margin-bottom: 20px;
+}
+.hero h1 { margin: 0; font-size: clamp(1.4rem, 5vw, 2.2rem); }
+.hero p { margin: 6px 0 12px; opacity: 0.9; }
+.badges { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px; }
+.badges span {
+  background: rgba(255, 255, 255, 0.2);
+  padding: 4px 12px;
+  border-radius: 99px;
+  font-size: 0.8rem;
+}
+
+main {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+  gap: 16px;
+  align-items: start;
+}
+.card {
+  background: var(--card);
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+.card h2 { margin: 0 0 14px; font-size: 1.05rem; }
+.card h3 { margin: 20px 0 8px; font-size: 0.9rem; color: var(--muted); }
+
+.presets { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-bottom: 16px; }
+.chip {
+  padding: 8px 14px;
+  border: 1px solid var(--border);
+  border-radius: 99px;
+  background: transparent;
+  color: var(--text);
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+.chip:hover { border-color: var(--primary); color: var(--primary); }
+
+fieldset { border: 0; padding: 0; margin: 0 0 18px; }
+legend { font-weight: 700; margin-bottom: 10px; padding: 0; }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 14px; }
+label { display: flex; flex-direction: column; gap: 6px; font-size: 0.85rem; color: var(--muted); }
+input, select {
+  min-height: 44px;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  font-size: 16px;
+  background: var(--card);
+  color: var(--text);
+}
+input:focus, select:focus { outline: 2px solid var(--primary); border-color: transparent; }
+
+.btn {
+  width: 100%;
+  min-height: 48px;
+  margin-top: 6px;
+  border: 0;
+  border-radius: 12px;
+  background: var(--primary);
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+.btn:hover:not(:disabled) { filter: brightness(1.1); }
+.btn:disabled { opacity: 0.6; cursor: wait; }
+
+.result { position: sticky; top: 16px; }
+.gauge {
+  --p: 0;
+  --accent: var(--ok);
+  position: relative;
+  width: 150px;
+  height: 150px;
+  margin: 4px auto 14px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: conic-gradient(var(--accent) calc(var(--p) * 1%), var(--track) 0);
+}
+.gauge.no { --accent: var(--no); }
+.gauge::before {
+  content: "";
+  position: absolute;
+  inset: 14px;
+  border-radius: 50%;
+  background: var(--card);
+}
+.gauge span { position: relative; font-size: 1.8rem; font-weight: 800; }
+
+.verdict { font-size: 1.3rem; font-weight: 700; padding: 12px; border-radius: 12px; text-align: center; }
+.verdict.ok { background: var(--ok-bg); color: var(--ok-text); }
+.verdict.no { background: var(--no-bg); color: var(--no-text); }
+.error { background: #fef3c7; color: #92400e; padding: 12px; border-radius: 10px; }
+.muted { color: var(--muted); }
+.center { text-align: center; }
+.note { display: block; margin-top: 20px; }
+
+.history { list-style: none; margin: 0; padding: 0; }
+.history li {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--track);
+  font-size: 0.9rem;
+}
+
+@media (max-width: 800px) {
+  main { grid-template-columns: 1fr; }
+  .result { position: static; }
+}
+@media (max-width: 480px) {
+  .app { padding: 10px; }
+  .card { padding: 14px; }
+}

@@ -1,0 +1,6 @@
+flask
+flask-cors
+gunicorn
+pandas
+joblib
+scikit-learn==1.9.1
